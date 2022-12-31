@@ -28,16 +28,13 @@ void spiTransfer(int addr, byte opcode, byte data){
     //enable the line 
     digitalWrite(LED_CS,LOW);
     for(int i=maxbytes-1;i>=0;i--){
-      //shiftOut(LED_DATA,LED_CLK,MSBFIRST,spidata[i-1]);
       for (int j = 0; j < 8; j++)  {//for each bit
         digitalWrite(LED_DATA, !!(spidata[i] & (1 << (7-j))));
-        //digitalWrite(dataPin, !!(val & (1 << (7 - i))));
         digitalWrite(LED_CLK, HIGH);
-        digitalWrite(LED_CLK, LOW); 
+        digitalWrite(LED_CLK, LOW);
       }
     }
     digitalWrite(LED_CS,HIGH);
-  
 }
 
 void setup(){
